@@ -69,6 +69,8 @@ typedef struct config_t {
     int tray_padding;
     int num_outputs;
     char **outputs;
+    int num_banned_wm_classes;
+    char **banned_wm_classes;
 
     bar_display_mode_t hide_on_modifier;
 

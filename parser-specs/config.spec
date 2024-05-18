@@ -539,6 +539,7 @@ state BAR:
   'bindsym'                -> BAR_BINDSYM
   'position'               -> BAR_POSITION
   'output'                 -> BAR_OUTPUT
+  'banned_wm_class'         -> BAR_BANNED_WM_CLASS
   'tray_output'            -> BAR_TRAY_OUTPUT
   'tray_padding'           -> BAR_TRAY_PADDING
   'font'                   -> BAR_FONT
@@ -625,6 +626,10 @@ state BAR_POSITION:
 state BAR_OUTPUT:
   output = word
       -> call cfg_bar_output($output); BAR
+
+state BAR_BANNED_WM_CLASS:
+  banned_wm_class = word
+      -> call cfg_bar_banned_wm_class($banned_wm_class); BAR
 
 state BAR_TRAY_OUTPUT:
   output = word

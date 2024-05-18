@@ -86,6 +86,7 @@ CFGFUN(bar_separator_symbol, const char *separator);
 CFGFUN(bar_mode, const char *mode);
 CFGFUN(bar_hidden_state, const char *hidden_state);
 CFGFUN(bar_id, const char *bar_id);
+CFGFUN(bar_banned_wm_class, const char *banned_wm_class);
 CFGFUN(bar_output, const char *output);
 CFGFUN(bar_verbose, const char *verbose);
 CFGFUN(bar_height, const long height);

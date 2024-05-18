@@ -726,6 +726,15 @@ CFGFUN(bar_id, const char *bar_id) {
     current_bar->id = sstrdup(bar_id);
 }
 
+CFGFUN(bar_banned_wm_class, const char *banned_wm_class) {
+    int new_banned_wm_classes = current_bar->num_banned_wm_classes + 1;
+    current_bar->banned_wm_classes = srealloc(current_bar->banned_wm_classes, sizeof(char *) * new_banned_wm_classes);
+    current_bar->banned_wm_classes[current_bar->num_banned_wm_classes] = sstrdup(banned_wm_class);
+    current_bar->num_banned_wm_classes = new_banned_wm_classes;
+
+    LOG("Updating banned WM_CLASS values: %s (%d)\n", banned_wm_class, new_banned_wm_classes);
+}
+
 CFGFUN(bar_output, const char *output) {
     int new_outputs = current_bar->num_outputs + 1;
     current_bar->outputs = srealloc(current_bar->outputs, sizeof(char *) * new_outputs);

@@ -775,6 +775,15 @@ static void dump_bar_config(yajl_gen gen, Barconfig *config) {
         y(array_close);
     }
 
+    if(config->num_banned_wm_classes > 0) {
+        ystr("banned_wm_classes");
+        y(array_open);
+        for (int c = 0; c < config->num_banned_wm_classes; c++) {
+            ystr(canonicalize_output_name(config->banned_wm_classes[c]));
+        }
+        y(array_close);
+    }
+
     if (!TAILQ_EMPTY(&(config->tray_outputs))) {
         ystr("tray_outputs");
         y(array_open);

@@ -292,6 +292,11 @@ struct Barconfig {
      * simplicity (since we store just strings). */
     char **outputs;
 
+    /** Number of banned WM_CLASS values */
+    int num_banned_wm_classes;
+    /** WM_CLASS values. We use an array for simplicity (since we store just strings). */
+    char **banned_wm_classes;
+
     /* List of outputs on which the tray is allowed to be shown, in order.
      * The special value "none" disables it (per default, it will be shown) and
      * the special value "primary" enabled it on the primary output. */

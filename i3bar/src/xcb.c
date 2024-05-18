@@ -912,6 +912,28 @@ static void handle_client_message(xcb_client_message_event_t *event) {
         if (op == SYSTEM_TRAY_REQUEST_DOCK) {
             xcb_window_t client = event->data.data32[2];
 
+            xcb_get_property_cookie_t nameCookie;
+            xcb_get_property_reply_t *nameCookieReply;
+            xcb_atom_t nameProperty = XCB_ATOM_WM_CLASS;
+            xcb_atom_t nameType = XCB_ATOM_STRING;
+            nameCookie = xcb_get_property(xcb_connection, 0, client, nameProperty, nameType, 0, 1000);
+            if((nameCookieReply = xcb_get_property_reply(xcb_connection, nameCookie, NULL))) {
+                int len = xcb_get_property_value_length(nameCookieReply);
+                if(len == 0) {
+                    ELOG("No name was retrieved!\n");
+                } else {
+                    char* wmClass = (char*)xcb_get_property_value(nameCookieReply);
+                    for (int c = 0; c < config.num_banned_wm_classes; c++) {
+                        if(!strcmp(wmClass, config.banned_wm_classes[c])) {
+                            DLOG("WM_CLASS %s is banned from the tray.\n", config.banned_wm_classes[c]);
+                            return;
+                        }
+                    }
+                }
+
+               free(nameCookieReply);
+            }
+
             mask = XCB_CW_EVENT_MASK;
 
             /* Needed to get the most recent value of XEMBED_MAPPED. */

@@ -105,6 +105,7 @@ static void free_configuration(void) {
         }
 
         FREE(barconfig->outputs);
+        FREE(barconfig->banned_wm_classes);
         FREE(barconfig->socket_path);
         FREE(barconfig->status_command);
         FREE(barconfig->workspace_command);

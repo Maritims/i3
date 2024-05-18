@@ -223,6 +223,15 @@ static int config_string_cb(void *params_, const unsigned char *val, size_t _len
         return 1;
     }
 
+    if(!strcmp(cur_key, "banned_wm_classes")) {
+        LOG("+banned_wm_class %.*s\n", len, val);
+        int new_num_banned_wm_classes = config.num_banned_wm_classes + 1;
+        config.banned_wm_classes = srealloc(config.banned_wm_classes, sizeof(char *) * new_num_banned_wm_classes);
+        sasprintf(&config.banned_wm_classes[config.num_banned_wm_classes], "%.*s", len, val);
+        config.num_banned_wm_classes = new_num_banned_wm_classes;
+        return 1;
+    }
+
     /* We keep the old single tray_output working for users who only restart i3bar
      * after updating. */
     if (!strcmp(cur_key, "tray_output")) {
