@@ -16,7 +16,7 @@ For information about contributing to i3, please see [CONTRIBUTING.md](.github/C
 
 ## Custom features
 ### Banning applications by WM_CLASS from adding their icons to the tray.
-Adding the following to the `bar` block your i3config file will ban the applications nm-applet, vlc and slack from adding their icons to the tray:
+Adding the following to the `bar` block of your i3config file will ban the applications nm-applet, vlc and slack from adding their icons to the tray:
 ```
 banned_wm_class nm-applet
 banned_wm_class vlc
