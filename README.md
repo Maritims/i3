@@ -13,3 +13,12 @@ i3 is a tiling window manager for X11.
 For more information about i3, please see [the project's website](https://i3wm.org/) and [online documentation](https://i3wm.org/docs/).
 
 For information about contributing to i3, please see [CONTRIBUTING.md](.github/CONTRIBUTING.md).
+
+## Custom features
+### Banning applications by WM_CLASS from adding their icons to the tray.
+Adding the following to the `bar` block your i3config file will ban the applications nm-applet, vlc and slack from adding their icons to the tray:
+```
+banned_wm_class nm-applet
+banned_wm_class vlc
+banned_wm_class slack
+```
